@@ -1,0 +1,10 @@
+.gcloudignore
+.git
+.gitignore
+.devcontainer
+.dockerignore
+.DS_Store
+.Rproj.user
+deployment/*
+penang-catch.Rroj
+README*

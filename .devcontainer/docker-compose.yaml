@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+  r-tracking:
+    build: .
+    ports:
+      - "8795:8787"
+    volumes:
+      - ..:/home/rstudio/tracking
+    environment: 
+      DISABLE_AUTH: "true"
