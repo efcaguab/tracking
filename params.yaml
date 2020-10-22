@@ -1,0 +1,14 @@
+# Infrastructure parameters
+project:
+  id: peskas
+service_account:
+  name: tracking
+  description: Tracking data pipeline domain
+  display_name: Tracking domain
+  role:
+    storage:
+      name: roles/storage.admin
+      condition:
+        expression: resource.name=="projects/_/buckets/tracking"
+        title: bucket_is_tracking
+        description: Only grant access to tracking bucket
