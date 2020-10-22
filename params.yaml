@@ -12,3 +12,6 @@ service_account:
         expression: resource.name=="projects/_/buckets/tracking"
         title: bucket_is_tracking
         description: Only grant access to tracking bucket
+secret:
+  file: auth/key.json
+  name: tracking
