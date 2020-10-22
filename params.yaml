@@ -9,9 +9,9 @@ service_account:
     storage:
       name: roles/storage.admin
       condition:
-        expression: resource.name=="projects/_/buckets/tracking"
-        title: bucket_is_tracking
-        description: Only grant access to tracking bucket
+        expression: resource.name=="projects/_/buckets/peskas-tracking"
+        title: bucket_is_peskas_tracking
+        description: Only grant access to peskas tracking bucket
 secret:
   file: auth/key.json
   name: tracking
