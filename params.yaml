@@ -15,3 +15,9 @@ service_account:
 secret:
   file: auth/key.json
   name: tracking
+storage:
+  bucket:
+    name: peskas-tracking
+    location: ASIA
+    uniform_access: on
+    class: Standard
