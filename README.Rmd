@@ -30,3 +30,4 @@ This repository contains code for the tracking data pipeline.
 - [Create the storage](https://cloud.google.com/storage/docs/creating-buckets) bucket: [`deployment/create-storage-bucket.sh`](deployment/create-storage-bucket.sh)
 - [Grant service account permissions](https://cloud.google.com/iam/docs/creating-managing-service-accounts) to admin storage objects: [`deployment/grant-service-account-storage-permissions.sh`](deployment/grant-service-account-storage-permissions.sh)
 - [Create topic](https://cloud.google.com/pubsub/docs/admin) for message passing between the storage bucket and the validation API: [`deployment/create-pubsub-validation-topic.sh`](deployment/create-pubsub-validation-topic.sh)
+- [Enable notifications](https://cloud.google.com/storage/docs/gsutil/commands/notification) for raw data updates to the validation topic: [`deployment/create-raw-data-notification.sh`](deployment/create-raw-data-notification.sh)

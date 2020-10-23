@@ -29,3 +29,26 @@ ingestion:
       overwrite: true
       api:
         secret: auth/pelagic.yaml
+validation:
+  config: cloudbuild_validation.yaml
+  api:
+    image:
+      name: tracking-validation
+    service:
+      name: tracking-validation
+      region: asia-east1
+  pubsub:
+    topic:
+      name: tracking-validation
+    notification:
+      format: json
+      event: OBJECT_FINALIZE
+    subscription:
+      name: tracking-validation
+      acknowledgement:
+        deadline: 600
+      retry:
+        delay:
+          min: 60s
+          max: 600s
+  endpoint: tracking-validation
