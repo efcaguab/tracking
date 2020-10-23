@@ -17,3 +17,15 @@ storage:
     location: ASIA
     uniform_access: on
     class: Standard
+ingestion:
+  daily_update:
+    config: cloudbuild_ingestion.yaml
+    image:
+      name: tracking-ingestion
+  datasets:
+    -
+      object_prefix: pelagic-data-daily
+      object_extension: csv
+      overwrite: true
+      api:
+        secret: auth/pelagic.yaml

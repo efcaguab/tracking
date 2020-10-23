@@ -1,0 +1,44 @@
+steps:
+
+- id: Download service account key
+  name: gcr.io/cloud-builders/gcloud
+  entrypoint: bash
+  args:
+  - -c
+  - gcloud secrets versions access latest --secret=tracking > auth/key.json
+
+- id: Download pelagic data systems secret
+  name: gcr.io/cloud-builders/gcloud
+  entrypoint: bash
+  args:
+  - -c
+  - gcloud secrets versions access latest --secret=pelagic-api-secret > auth/pelagic.yaml
+
+- id: Build ingestion container
+  name: gcr.io/cloud-builders/docker
+  args:
+  - build
+  - -f
+  - ingestion/Dockerfile
+  - -t
+  - gcr.io/${PROJECT_ID}/${_IMAGE_NAME_}:$BUILD_ID
+  - '.'
+
+- id: Push image to registry
+  name: gcr.io/cloud-builders/docker
+  args:
+  - push
+  - gcr.io/${PROJECT_ID}/${_IMAGE_NAME_}:$BUILD_ID
+
+- id: Run ingestion script
+  name: gcr.io/cloud-builders/docker
+  args:
+  - run
+  - gcr.io/${PROJECT_ID}/${_IMAGE_NAME_}:$BUILD_ID
+  - Rscript
+  - main.R
+
+images: ['gcr.io/${PROJECT_ID}/${_IMAGE_NAME_}:$BUILD_ID']
+
+substitutions:
+  _IMAGE_NAME_: tracking-ingestion
