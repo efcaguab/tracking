@@ -19,7 +19,7 @@ This repository contains code for the tracking data pipeline.
 
 1. Input data is retrieved on a daily basis at midnight (UTM) by a Google Build Service from the Pelagic Data Systems restful API. Daily tracks are stored in a Google Storage bucket. In addition, the storage bucket is checked every time in case missing days exist. 
 1. Changes in the storage bucket that match the daily update prefix are automatically detected and trigger a Google pub/sub notification.
-1. The pub/sub message triggers a call to an API processing function that reads the data from the storage. The function then validates, cleans, and transforms, the data. Finally, the clean data is deposited in a Google BigQuery table. The processing function runs serverless in Google CloudRun.
+1. The pub/sub message triggers a call to an API processing function. This API reads the data from the storage. The function then validates, cleans, and transforms, the data. Finally, the clean data is deposited in a Google BigQuery table. The processing function runs serverless in Google CloudRun.
 
 ## Deployment steps
 
@@ -29,3 +29,4 @@ This repository contains code for the tracking data pipeline.
 - Upload the Pelagic Data Systems secret information to Google Secret Manager. This must be done manually. The secret information should be in a yaml format and have the field "SECRET" got the X-API-SECRET in the header, and the field "API_KEY" for the API KEY that's part of the path. 
 - [Create the storage](https://cloud.google.com/storage/docs/creating-buckets) bucket: [`deployment/create-storage-bucket.sh`](deployment/create-storage-bucket.sh)
 - [Grant service account permissions](https://cloud.google.com/iam/docs/creating-managing-service-accounts) to admin storage objects: [`deployment/grant-service-account-storage-permissions.sh`](deployment/grant-service-account-storage-permissions.sh)
+- [Create topic](https://cloud.google.com/pubsub/docs/admin) for message passing between the storage bucket and the validation API: [`deployment/create-pubsub-validation-topic.sh`](deployment/create-pubsub-validation-topic.sh)
