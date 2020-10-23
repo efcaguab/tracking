@@ -7,11 +7,7 @@ service_account:
   display_name: Tracking domain
   role:
     storage:
-      name: roles/storage.admin
-      condition:
-        expression: resource.name=="projects/_/buckets/peskas-tracking"
-        title: bucket_is_peskas_tracking
-        description: Only grant access to peskas tracking bucket
+      name: objectAdmin
 secret:
   file: auth/key.json
   name: tracking
