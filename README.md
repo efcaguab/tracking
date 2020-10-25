@@ -63,3 +63,9 @@ dataset includes tables with *(i)* the full clean dataset.
     build](https://cloud.google.com/cloud-build/docs/build-debug-locally).
     This will create the url for the service:
     [`deployment/deploy-validation-api.sh`](deployment/deploy-validation-api.sh)
+  - If its the first time running pubsub push service,
+    [setup](https://cloud.google.com/pubsub/docs/push) pubsub
+    permissions and create and invoker account for push notifications,
+    skip otherwise.
+  - Grant permissions to invoke validation api:
+    [`deployment/grant-validation-api-permisions.sh`](deployment/grant-validation-api-permisions.sh)

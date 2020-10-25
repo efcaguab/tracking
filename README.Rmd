@@ -32,3 +32,6 @@ This repository contains code for the tracking data pipeline.
 - [Create topic](https://cloud.google.com/pubsub/docs/admin) for message passing between the storage bucket and the validation API: [`deployment/create-pubsub-validation-topic.sh`](deployment/create-pubsub-validation-topic.sh)
 - [Enable notifications](https://cloud.google.com/storage/docs/gsutil/commands/notification) for raw data updates to the validation topic: [`deployment/create-raw-data-notification.sh`](deployment/create-raw-data-notification.sh)
 - Deploy data validation API using a [local build](https://cloud.google.com/cloud-build/docs/build-debug-locally). This will create the url for the service: [`deployment/deploy-validation-api.sh`](deployment/deploy-validation-api.sh)
+- If its the first time running pubsub push service, [setup](https://cloud.google.com/pubsub/docs/push) pubsub permissions and create and invoker account for push notifications, skip otherwise.
+- Grant permissions to invoke validation api: [`deployment/grant-validation-api-permisions.sh`](deployment/grant-validation-api-permisions.sh)
+
