@@ -69,3 +69,7 @@ dataset includes tables with *(i)* the full clean dataset.
     skip otherwise.
   - Grant permissions to invoke validation api:
     [`deployment/grant-validation-api-permisions.sh`](deployment/grant-validation-api-permisions.sh)
+  - [Create pubsub
+    subscription](https://cloud.google.com/pubsub/docs/admin#pubsub_create_pull_subscription-gcloud)
+    to data validation topic:
+    [`deployment/create-pubsub-validation-subscription.sh`](deployment/create-pubsub-validation-subscription.sh)
