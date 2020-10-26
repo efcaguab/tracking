@@ -30,7 +30,7 @@ if (length(dates_to_download) > 0) {
 
   purrr::walk(.x = dates_to_download, .f = function(x){
 
-    cat("Date", as.character(x), "\n")
+    cat("Processing date", as.character(x), "\n")
 
     retrieved_data <- request_pds_tracks(
       date = x,
@@ -51,7 +51,6 @@ if (length(dates_to_download) > 0) {
     insistent_upload_object_gcs(
       path = data_path,
       bucket = params$storage$bucket$name,
-      metadata = list(`Content-Type` = "text/csv"),
       auth_file = params$secret$file)
 
     Sys.sleep(57) # There is a BQ limit of 1500 table uploads per day
