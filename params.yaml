@@ -8,6 +8,8 @@ service_account:
   role:
     storage:
       name: objectAdmin
+    bigquery:
+      name: roles/bigquery.user
 secret:
   file: auth/key.json
   name: tracking
