@@ -9,24 +9,6 @@ params <- yaml::read_yaml(here::here("params.yaml"))
 pds_params <- params$ingestion$datasets[[1]]
 pds_secret <- yaml::read_yaml(pds_params$api$secret)
 
-retrieved_data <- request_pds_tracks(
-  date = Sys.Date(),
-  secret = pds_secret)
-
-data_path <- save_in_tempfile(
-  content = retrieved_data,
-  prefix = pds_params$object_prefix,
-  extension = pds_params$object_extension)
-
-upload_object_gcs(
-  path = data_path,
-  bucket = params$storage$bucket$name,
-  metadata = list(`Content-Type` = "text/csv"),
-  auth_file = params$secret$file)
-
-
-# HISTORICAL DATA ---------------------------------------------------------
-
 # If the daily ingestion is only for new data, then a series of historical data
 # sets must be available as well. The following section connects to the storage
 # bucket and identifies the datasets than need to be downloaded to complete the
@@ -34,7 +16,7 @@ upload_object_gcs(
 
 # Identify all previous updates
 hist_dates <- seq(from = as.Date(params$ingestion$datasets[[1]]$start_date),
-                  to = Sys.Date() - 1, by = 1)
+                  to = Sys.Date(), by = 1)
 hist_names <- paste0(params$ingestion$datasets[[1]]$object_prefix, "_", hist_dates)
 hist_file_names <- paste0(hist_names, ".", params$ingestion$datasets[[1]]$object_extension)
 
