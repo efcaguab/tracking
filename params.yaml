@@ -29,6 +29,7 @@ ingestion:
       object_prefix: pelagic-data-daily
       object_extension: csv
       overwrite: false
+      start_date: "2018-02-08"
       api:
         secret: auth/pelagic.yaml
 validation:
