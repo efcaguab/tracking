@@ -93,6 +93,13 @@ dataset includes tables with *(i)* the full clean dataset.
     to data validation topic:
     [`deployment/create-pubsub-validation-subscription.sh`](deployment/create-pubsub-validation-subscription.sh)
 
+**Continuous development and scheduling**
+
+  - [Connect repository to cloud
+    build](https://console.cloud.google.com/cloud-build/triggers/connect)
+    (needs to be done manually)
+  - Rebuild ingestion when Github code is updated:
+    [`deployment/create-cd-github-ingestion-trigger.sh`](deployment/create-cd-github-ingestion-trigger.sh)
 ## Support & Contributing
 
 For general questions about the Peskas Platform, contact [Alex
