@@ -29,22 +29,31 @@ dates_to_download <- hist_dates[!hist_file_names %in% existing_files]
 if (length(dates_to_download) > 0) {
 
   purrr::walk(.x = dates_to_download, .f = function(x){
+
+    cat("Date", as.character(x), "\n")
+
     retrieved_data <- request_pds_tracks(
       date = x,
       secret = pds_secret)
-
 
     data_path <- save_in_tempfile(
       content = retrieved_data,
       prefix = pds_params$object_prefix,
       extension = pds_params$object_extension)
 
-    upload_object_gcs(
+    insistent_upload_object_gcs <- purrr::insistently(
+      f = upload_object_gcs,
+      rate = purrr::rate_backoff(
+        pause_cap = 60*5,
+        max_times = 10),
+      quiet = F)
+
+    insistent_upload_object_gcs(
       path = data_path,
       bucket = params$storage$bucket$name,
       metadata = list(`Content-Type` = "text/csv"),
       auth_file = params$secret$file)
 
-    Sys.sleep(60)
+    Sys.sleep(57) # There is a BQ limit of 1500 table uploads per day
   })
 }
