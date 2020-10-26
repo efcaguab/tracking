@@ -28,7 +28,7 @@ ingestion:
     -
       object_prefix: pelagic-data-daily
       object_extension: csv
-      overwrite: true
+      overwrite: false
       api:
         secret: auth/pelagic.yaml
 validation:
@@ -54,3 +54,12 @@ validation:
           min: 60s
           max: 600s
   endpoint: tracking-validation
+  bigquery:
+    raw:
+      dataset: tracking
+      location: asia-east1
+      table: tracking_raw
+      col_types: Tdddddddccdc
+      nskip: 1
+      write_disposition: WRITE_APPEND
+      create_disposition: CREATE_IF_NEEDED
