@@ -1,7 +1,15 @@
 Peskas: tracking domain
 ================
 
-This repository contains code for the tracking data pipeline.
+Peskas is an advanced intelligence platform for artisanal fisheries. One
+of the key features of Peskas is the ability to integrate spatial data
+from boat tracks with the catch data. From the data architecture point
+of view, [Peskas is divided into “data
+domains”](https://blog.peskas.org/posts/domain-based-architecture/),
+each domain plays a bounded role and should function largely
+independently from other domains. The spatial tracking data is one of
+Peskas domains and *this repository contains all code for its internal
+data pipeline*.
 
 ## Pipeline description
 
@@ -27,6 +35,8 @@ dataset includes tables with *(i)* the full clean dataset.
 
 ## Deployment steps
 
+**Authentication**
+
   - [Create a service
     account](https://cloud.google.com/iam/docs/creating-managing-service-accounts)
     for this domain:
@@ -41,9 +51,13 @@ dataset includes tables with *(i)* the full clean dataset.
     [`deployment/create-secret.sh`](deployment/create-secret.sh)
   - Upload the Pelagic Data Systems secret information to Google Secret
     Manager. This must be done manually. The secret information should
-    be in a yaml format and have the field “SECRET” got the X-API-SECRET
-    in the header, and the field “API\_KEY” for the API KEY that’s part
-    of the path.
+    be in a yaml format and have two fields. The field “SECRET” which
+    contains the X-API-SECRET that will be included in the header of the
+    request to the Pelagic Data Systems API, and the field “API\_KEY”
+    which contains the API KEY that’s part of the path of the request.
+
+**Ingestion**
+
   - [Create the
     storage](https://cloud.google.com/storage/docs/creating-buckets)
     bucket:
@@ -52,6 +66,9 @@ dataset includes tables with *(i)* the full clean dataset.
     permissions](https://cloud.google.com/iam/docs/creating-managing-service-accounts)
     to admin storage objects:
     [`deployment/grant-service-account-storage-permissions.sh`](deployment/grant-service-account-storage-permissions.sh)
+
+**Validation**
+
   - [Create topic](https://cloud.google.com/pubsub/docs/admin) for
     message passing between the storage bucket and the validation API:
     [`deployment/create-pubsub-validation-topic.sh`](deployment/create-pubsub-validation-topic.sh)
@@ -75,3 +92,25 @@ dataset includes tables with *(i)* the full clean dataset.
     subscription](https://cloud.google.com/pubsub/docs/admin#pubsub_create_pull_subscription-gcloud)
     to data validation topic:
     [`deployment/create-pubsub-validation-subscription.sh`](deployment/create-pubsub-validation-subscription.sh)
+
+## Support & Contributing
+
+For general questions about the Peskas Platform, contact [Alex
+Tilley](mailto:a.tilley@cgiar.org). For questions about Peskas’ code and
+technical infrastructure, contact [Fernando
+Cagua](mailto:f.cagua@cgiar.org).
+
+## Authors
+
+**Fernando Cagua**
+
+  - Website: <http://www.cagua.co/>
+  - Github: <https://github.com/efcagua/>
+
+**Alex Tilley**
+
+  - Email: <a.tilley@cgiar.org>
+
+## License
+
+The code is available under the [MIT license](LICENSE).
