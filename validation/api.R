@@ -29,13 +29,6 @@ function(message=NULL){
     return(TRUE)
   }
 
-  # Check that we know about that datasetsd
-  this_bucket_datasets <- purrr::keep(
-    .x = params$datasets,
-    .p = ~ .$bucket==message$attributes$bucketId)
-  if (length(this_bucket_datasets) == 0)
-    stop("This bucket is not supported for auto-transformation")
-
   googleCloudRunner::cr_plumber_pubsub(message, validate_data)
 }
 
