@@ -24,6 +24,9 @@ ingestion:
     config: cloudbuild_ingestion.yaml
     image:
       name: tracking-ingestion
+  scheduler:
+    message:
+      body: {"branchName": "main"}
   datasets:
     -
       object_prefix: pelagic-data-daily

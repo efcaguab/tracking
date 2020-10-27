@@ -100,6 +100,9 @@ dataset includes tables with *(i)* the full clean dataset.
     (needs to be done manually)
   - Rebuild ingestion when Github code is updated:
     [`deployment/create-cd-github-ingestion-trigger.sh`](deployment/create-cd-github-ingestion-trigger.sh)
+  - [Schedule](https://stackoverflow.com/questions/57681367/trigger-google-cloud-build-with-google-cloud-scheduler-periodically)
+    ingestion daily:
+    [`deployment/schedule-ingestion-build.sh`](deployment/schedule-ingestion-build.sh)
 ## Support & Contributing
 
 For general questions about the Peskas Platform, contact [Alex
