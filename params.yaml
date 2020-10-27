@@ -38,7 +38,7 @@ ingestion:
       description: Ingest daily tracking data
       build_config: cloudbuild_ingestion.yaml
       files:
-        included: ingestion/*,cloudbuild_ingestion.yaml,params.yaml
+        included: ingestion/**,cloudbuild_ingestion.yaml,params.yaml
       repo:
         name: tracking
         owner: peskas-platform
