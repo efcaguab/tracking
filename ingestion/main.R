@@ -2,7 +2,7 @@
 purrr::walk(list.files("R", full.names = TRUE), source)
 
 # Read and parse parameters
-params <- yaml::read_yaml(here::here("params.yaml"))
+params <- yaml::read_yaml("params.yaml")
 
 # DAILY UPDATE ------------------------------------------------------------
 

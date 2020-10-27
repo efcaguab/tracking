@@ -1,6 +1,6 @@
 FROM rocker/r-ver:4.0.2
 
-RUN install2.r googleCloudRunner here
+RUN install2.r googleCloudRunner
 
 COPY ingestion /home
 COPY auth /home/auth
