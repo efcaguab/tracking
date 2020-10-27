@@ -28,10 +28,9 @@ dataset includes tables with *(i)* the full clean dataset.
 2.  Changes in the storage bucket that match the daily update prefix are
     automatically detected and trigger a Google pub/sub notification.
 3.  The pub/sub message triggers a call to an API processing function.
-    This API reads the data from the storage. The function then
-    validates, cleans, and transforms, the data. Finally, the clean data
-    is deposited in a Google BigQuery table. The processing function
-    runs serverless in Google CloudRun.
+    This API reads the data from the storage and aggregates the data.
+    This data is then deposited in a Google BigQuery table. The
+    aggregation function runs serverless in Google CloudRun.
 
 ## Deployment steps
 

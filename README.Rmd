@@ -22,7 +22,7 @@ The spatial tracking data is one of Peskas domains and *this repository contains
 
 1. Input data is retrieved on a daily basis at midnight (UTM) by a Google Build Service from the Pelagic Data Systems restful API. Daily tracks are stored in a Google Storage bucket. In addition, the storage bucket is checked every time in case missing days exist. 
 1. Changes in the storage bucket that match the daily update prefix are automatically detected and trigger a Google pub/sub notification.
-1. The pub/sub message triggers a call to an API processing function. This API reads the data from the storage. The function then validates, cleans, and transforms, the data. Finally, the clean data is deposited in a Google BigQuery table. The processing function runs serverless in Google CloudRun.
+1. The pub/sub message triggers a call to an API processing function. This API reads the data from the storage and aggregates the data. This data is then deposited in a Google BigQuery table. The aggregation function runs serverless in Google CloudRun.
 
 ## Deployment steps
 
