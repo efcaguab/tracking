@@ -46,29 +46,29 @@ ingestion:
         name: tracking
         owner: peskas-platform
       branch_pattern: ^main$
-validation:
-  config: cloudbuild_validation.yaml
+aggregation:
+  config: cloudbuild_aggregation.yaml
   api:
     image:
-      name: tracking-validation
+      name: tracking-aggregation
     service:
-      name: tracking-validation
+      name: tracking-aggregation
       region: asia-east1
   pubsub:
     topic:
-      name: tracking-validation
+      name: tracking-aggregation
     notification:
       format: json
       event: OBJECT_FINALIZE
     subscription:
-      name: tracking-validation
+      name: tracking-aggregation
       acknowledgement:
         deadline: 600
       retry:
         delay:
           min: 60s
           max: 600s
-  endpoint: tracking-validation
+  endpoint: tracking-aggregation
   bigquery:
     raw:
       dataset: tracking

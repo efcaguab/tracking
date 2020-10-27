@@ -67,31 +67,31 @@ dataset includes tables with *(i)* the full clean dataset.
     to admin storage objects:
     [`deployment/grant-service-account-storage-permissions.sh`](deployment/grant-service-account-storage-permissions.sh)
 
-**Validation**
+**Aggregation**
 
   - [Create topic](https://cloud.google.com/pubsub/docs/admin) for
-    message passing between the storage bucket and the validation API:
-    [`deployment/create-pubsub-validation-topic.sh`](deployment/create-pubsub-validation-topic.sh)
+    message passing between the storage bucket and the aggregation API:
+    [`deployment/create-pubsub-aggregation-topic.sh`](deployment/create-pubsub-aggregation-topic.sh)
   - [Enable
     notifications](https://cloud.google.com/storage/docs/gsutil/commands/notification)
-    for raw data updates to the validation topic:
+    for raw data updates to the aggregation topic:
     [`deployment/create-raw-data-notification.sh`](deployment/create-raw-data-notification.sh)
-  - Deploy data validation API using a [local
+  - Deploy data aggregation API using a [local
     build](https://cloud.google.com/cloud-build/docs/build-debug-locally).
     This will create the url for the service:
-    [`deployment/deploy-validation-api.sh`](deployment/deploy-validation-api.sh)
+    [`deployment/deploy-aggregation-api.sh`](deployment/deploy-aggregation-api.sh)
   - If its the first time running pubsub push service,
     [setup](https://cloud.google.com/pubsub/docs/push) pubsub
     permissions and create and invoker account for push notifications,
     skip otherwise.
-  - Grant permissions to invoke validation api:
-    [`deployment/grant-validation-api-permisions.sh`](deployment/grant-validation-api-permisions.sh)
+  - Grant permissions to invoke aggregation api:
+    [`deployment/grant-aggregation-api-permisions.sh`](deployment/grant-aggregation-api-permisions.sh)
   - Grant permissions to use BigQuery:
     [`deployment/grant-service-account-bigquery-permissions.sh`](deployment/grant-service-account-bigquery-permissions.sh)
   - [Create pubsub
     subscription](https://cloud.google.com/pubsub/docs/admin#pubsub_create_pull_subscription-gcloud)
-    to data validation topic:
-    [`deployment/create-pubsub-validation-subscription.sh`](deployment/create-pubsub-validation-subscription.sh)
+    to data aggregation topic:
+    [`deployment/create-pubsub-aggregation-subscription.sh`](deployment/create-pubsub-aggregation-subscription.sh)
 
 **Continuous development and scheduling**
 

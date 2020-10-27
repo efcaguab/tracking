@@ -9,10 +9,10 @@
 
 library(plumber)
 
-#* @apiTitle Penang data validation
+#* @apiTitle Penang data aggregation
 
 #* Transform data
-#* @post /tracking-validation
+#* @post /tracking-aggregation
 #* @param message a pub/sub message
 function(message=NULL){
 
@@ -46,12 +46,12 @@ validate_data <- function(x){
     object = x$name,
     bucket = x$bucket,
     project = params$project$id,
-    object_col = params$validation$bigquery$raw$coltypes,
-    bq_dataset = params$validation$bigquery$raw$dataset,
-    bq_table = params$validation$bigquery$raw$table,
-    bq_location = params$validation$bigquery$raw$location,
-    bq_write_disposition = params$validation$bigquery$raw$write_disposition,
-    bq_create_disposition = params$validation$bigquery$raw$create_disposition,
+    object_col = params$aggregation$bigquery$raw$coltypes,
+    bq_dataset = params$aggregation$bigquery$raw$dataset,
+    bq_table = params$aggregation$bigquery$raw$table,
+    bq_location = params$aggregation$bigquery$raw$location,
+    bq_write_disposition = params$aggregation$bigquery$raw$write_disposition,
+    bq_create_disposition = params$aggregation$bigquery$raw$create_disposition,
     secret_path = params$secret$file)
 
   return(0)
