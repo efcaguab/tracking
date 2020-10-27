@@ -42,7 +42,7 @@ ingestion:
       repo:
         name: tracking
         owner: peskas-platform
-      branch_pattern: '^master$'
+      branch_pattern: '^main$'
 validation:
   config: cloudbuild_validation.yaml
   api:
