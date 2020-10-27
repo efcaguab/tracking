@@ -92,16 +92,22 @@ dataset includes tables with *(i)* the full clean dataset.
     to data aggregation topic:
     [`deployment/create-pubsub-aggregation-subscription.sh`](deployment/create-pubsub-aggregation-subscription.sh)
 
-**Continuous development and scheduling**
+**Continuous development**
 
   - [Connect repository to cloud
     build](https://console.cloud.google.com/cloud-build/triggers/connect)
     (needs to be done manually)
   - Rebuild ingestion when Github code is updated:
     [`deployment/create-cd-github-ingestion-trigger.sh`](deployment/create-cd-github-ingestion-trigger.sh)
+  - Rebuild aggregation when Github code is updated:
+    [`deployment/create-cd-github-aggregation-trigger.sh`](deployment/create-cd-github-aggregation-trigger.sh)
+
+**Scheduling**
+
   - [Schedule](https://stackoverflow.com/questions/57681367/trigger-google-cloud-build-with-google-cloud-scheduler-periodically)
     ingestion daily:
     [`deployment/schedule-ingestion-build.sh`](deployment/schedule-ingestion-build.sh)
+
 ## Support & Contributing
 
 For general questions about the Peskas Platform, contact [Alex
