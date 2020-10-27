@@ -28,7 +28,9 @@ dates_to_download <- hist_dates[!hist_file_names %in% existing_files]
 
 if (length(dates_to_download) > 0) {
 
-  purrr::walk(.x = dates_to_download, .f = function(x){
+  delay <- ifelse(length(dates_to_download) == 1, 0, 57)
+
+  purrr::walk(.x = dates_to_download, .f = function(x, delay){
 
     cat("Processing date", as.character(x), "\n")
 
@@ -53,6 +55,6 @@ if (length(dates_to_download) > 0) {
       bucket = params$storage$bucket$name,
       auth_file = params$secret$file)
 
-    Sys.sleep(57) # There is a BQ limit of 1500 table uploads per day
-  })
+    Sys.sleep(delay) # There is a BQ limit of 1500 table uploads per day
+  }, delay)
 }
