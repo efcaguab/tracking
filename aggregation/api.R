@@ -91,8 +91,11 @@ get_raw_csv <- function(object, bucket, object_col, secret_path){
   googleCloudStorageR::gcs_get_object(object_name = object,
                                       bucket = bucket,
                                       saveToDisk = values_path)
-  # Clean column names
   values <- readr::read_csv(values_path, guess_max = 10000,
-                            col_types = object_col)
-  janitor::clean_names(values)
+                            col_types = object_col) %>%
+    # Clean column names
+    janitor::clean_names(values) %>%
+    # Imei doesn't work well as an iteger
+    dplyr::mutate(imei = as.character(imei))
+
 }
