@@ -46,7 +46,7 @@ validate_data <- function(x){
     object = x$name,
     bucket = x$bucket,
     project = params$project$id,
-    object_col = params$aggregation$bigquery$raw$coltypes,
+    object_col = params$aggregation$bigquery$raw$col_types,
     bq_dataset = params$aggregation$bigquery$raw$dataset,
     bq_table = params$aggregation$bigquery$raw$table,
     bq_location = params$aggregation$bigquery$raw$location,
