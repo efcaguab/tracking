@@ -94,7 +94,7 @@ get_raw_csv <- function(object, bucket, object_col, secret_path){
   values <- readr::read_csv(values_path, guess_max = 10000,
                             col_types = object_col) %>%
     # Clean column names
-    janitor::clean_names(values) %>%
+    janitor::clean_names() %>%
     # Imei doesn't work well as an iteger
     dplyr::mutate(imei = as.character(imei))
 
